@@ -1,17 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
+    <prerequisites>
+        <maven>3.0</maven>
+    </prerequisites>
 
     <groupId>org.knowm.xchange</groupId>
     <artifactId>xchange-parent</artifactId>
-    <version>4.3.7-SNAPSHOT</version>
+    <version>4.3.10-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>XChange</name>
     <description>XChange is a Java library providing a simple and consistent API for interacting with
         a diverse set of cryptocurrency exchanges.
     </description>
+
     <url>http://knowm.org/open-source/xchange</url>
     <inceptionYear>2012</inceptionYear>
 
@@ -24,55 +29,21 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-        <version.assertj>3.9.1</version.assertj>
+        <version.assertj>3.10.0</version.assertj>
         <version.commons.io>2.6</version.commons.io>
         <version.commons.lang3>3.7</version.commons.lang3>
-        <version.fasterxml>2.9.5</version.fasterxml>
+        <version.fasterxml>2.9.6</version.fasterxml>
         <version.github.mmazi>2.0.2</version.github.mmazi>
         <version.junit>4.12</version.junit>
-        <version.knowm.xchart>3.5.1</version.knowm.xchart>
-        <version.powermock>1.7.3</version.powermock>
+        <version.knowm.xchart>3.5.2</version.knowm.xchart>
+        <version.powermock>2.0.0-beta.5</version.powermock>
         <version.qos.logback>1.2.3</version.qos.logback>
         <version.reflections>0.9.11</version.reflections>
         <version.slf4j>1.7.25</version.slf4j>
+        <version.crypto>3.5.0</version.crypto>
 
         <skipIntegrationTests>true</skipIntegrationTests>
     </properties>
-
-
-    <developers>
-        <developer>
-            <name>Tim Molter</name>
-        </developer>
-    </developers>
-
-    <licenses>
-        <license>
-            <name>MIT</name>
-            <url>http://www.opensource.org/licenses/mit-license.php</url>
-            <distribution>repo</distribution>
-            <comments>All source code is under the MIT license.</comments>
-        </license>
-    </licenses>
-
-    <issueManagement>
-        <system>GitHub</system>
-        <url>https://github.com/knowm/XChange/issues</url>
-    </issueManagement>
-
-    <distributionManagement>
-        <snapshotRepository>
-            <id>sonatype-nexus-snapshots</id>
-            <name>Sonatype Nexus Snapshots</name>
-            <url>http://oss.sonatype.org/content/repositories/snapshots</url>
-        </snapshotRepository>
-        <repository>
-            <id>sonatype-nexus-staging</id>
-            <name>Nexus Release Repository</name>
-            <url>http://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-        </repository>
-        <downloadUrl>https://oss.sonatype.org/content/groups/public/org/knowm/xchange</downloadUrl>
-    </distributionManagement>
 
     <scm>
         <connection>scm:git:git@github.com:knowm/XChange.git</connection>
@@ -81,12 +52,8 @@
         <tag>HEAD</tag>
     </scm>
 
-    <ciManagement>
-        <url>https://travis-ci.org/timmolter/XChange</url>
-    </ciManagement>
-
     <modules>
-<!--shouldn't this always be first?-->
+        <!--shouldn't this always be first?-->
         <module>xchange-core</module>
     </modules>
 
@@ -151,11 +118,31 @@
                 <artifactId>jackson-dataformat-csv</artifactId>
                 <version>${version.fasterxml}</version>
             </dependency>
+
+            <dependency>
+                <groupId>org.web3j</groupId>
+                <artifactId>crypto</artifactId>
+                <version>${version.crypto}</version>
+            </dependency>
+
+            <!-- for bi-direction maps only -->
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>25.1-jre</version>
+            </dependency>
+
             <dependency>
                 <groupId>org.mockito</groupId>
                 <artifactId>mockito-core</artifactId>
-                <version>1.10.19</version>
-                <!-- <version>2.15.0</version> -->
+                <version>2.20.1</version>
+                <scope>test</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>com.github.tomakehurst</groupId>
+                <artifactId>wiremock</artifactId>
+                <version>2.18.0</version>
                 <scope>test</scope>
             </dependency>
 
@@ -169,7 +156,7 @@
             </dependency>
             <dependency>
                 <groupId>org.powermock</groupId>
-                <artifactId>powermock-api-mockito</artifactId>
+                <artifactId>powermock-api-mockito2</artifactId>
                 <version>${version.powermock}</version>
                 <scope>test</scope>
             </dependency>
@@ -180,14 +167,10 @@
                 <version>${version.qos.logback}</version>
             </dependency>
 
-            <dependency>
-                <groupId>org.web3j</groupId>
-                <artifactId>crypto</artifactId>
-                <version>3.2.0</version>
-            </dependency>
 
         </dependencies>
     </dependencyManagement>
+
 
     <!-- All children will have these dependencies -->
     <dependencies>
@@ -197,6 +180,13 @@
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
             <version>${version.slf4j}</version>
+        </dependency>
+
+        <!-- javax APIs -->
+        <dependency>
+            <groupId>javax.annotation</groupId>
+            <artifactId>javax.annotation-api</artifactId>
+            <version>1.3.2</version>
         </dependency>
 
         <!-- SLF4J implementation for use in examples -->
@@ -233,21 +223,6 @@
             </activation>
             <build>
                 <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-gpg-plugin</artifactId>
-                        <version>1.6</version>
-                        <executions>
-                            <execution>
-                                <id>sign-artifacts</id>
-                                <phase>verify</phase>
-                                <goals>
-                                    <goal>sign</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-
                     <!-- Generates a source code JAR during package -->
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
@@ -266,7 +241,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-javadoc-plugin</artifactId>
-                        <version>3.0.0-M1</version>
+                        <version>3.0.1</version>
                         <executions>
                             <execution>
                                 <id>attach-javadocs</id>
@@ -274,7 +249,7 @@
                                     <goal>jar</goal>
                                 </goals>
                                 <configuration>
-                                    <additionalparam>-Xdoclint:none</additionalparam>
+                                    <doclint>none</doclint>
                                 </configuration>
                             </execution>
                         </executions>
@@ -338,7 +313,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>3.0.0-M1</version>
+                <version>3.0.1</version>
                 <executions>
                     <execution>
                         <id>attach-javadocs</id>
@@ -350,18 +325,19 @@
                 <configuration>
                     <quiet>true</quiet>
                     <skip>false</skip>
+                    <doclint>none</doclint>
                 </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.20.1</version>
+                <version>2.21.0</version>
             </plugin>
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-failsafe-plugin</artifactId>
-                <version>2.20.1</version>
+                <version>2.21.0</version>
                 <executions>
                     <execution>
                         <goals>
@@ -380,7 +356,7 @@
             <plugin>
                 <groupId>com.coveo</groupId>
                 <artifactId>fmt-maven-plugin</artifactId>
-                <version>2.4.0</version>
+                <version>2.5.0</version>
                 <configuration>
                     <filesNamePattern>.*\.java</filesNamePattern>
                     <skip>false</skip>
@@ -393,7 +369,6 @@
                     </execution>
                 </executions>
             </plugin>
-
         </plugins>
     </build>
 

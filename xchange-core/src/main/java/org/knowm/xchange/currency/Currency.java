@@ -42,6 +42,7 @@ public class Currency implements Comparable<Currency>, Serializable {
   public static final Currency BC = createCurrency("BC", "BlackCoin", null, "BLK");
   public static final Currency BCC = createCurrency("BCC", "BitConnect", null);
   public static final Currency BCH = createCurrency("BCH", "BitcoinCash", null);
+  public static final Currency BCA = createCurrency("BCA", "BitcoinAtom", null);
   public static final Currency BLK = getInstance("BLK");
   public static final Currency BDT = createCurrency("BDT", "Bangladeshi Taka", null);
   public static final Currency BGC = createCurrency("BGC", "Aten 'Black Gold' Coin", null);
@@ -236,6 +237,7 @@ public class Currency implements Comparable<Currency>, Serializable {
   public static final Currency UYU = createCurrency("UYU", "Uruguayan Peso", null);
   public static final Currency UZS = createCurrency("UZS", "Uzbekistan Som", null);
   public static final Currency VEF = createCurrency("VEF", "Venezuelan Bolívar", null);
+  public static final Currency VET = createCurrency("VET", "Hub Culture's Vet", null, "VEN");
   public static final Currency VEN = createCurrency("VEN", "Hub Culture's Ven", null, "XVN");
   public static final Currency XVN = getInstance("XVN");
   public static final Currency VIB = createCurrency("VIB", "Viberate", null);
@@ -260,6 +262,7 @@ public class Currency implements Comparable<Currency>, Serializable {
   public static final Currency YER = createCurrency("YER", "Yemeni Rial", null);
   public static final Currency ZAR = createCurrency("ZAR", "South African Rand", null);
   public static final Currency ZEC = createCurrency("ZEC", "Zcash", null);
+  public static final Currency ZEN = createCurrency("ZEN", "ZenCash", null);
   public static final Currency ZMK = createCurrency("ZMK", "Zambian Kwacha", null);
   public static final Currency ZRC = createCurrency("ZRC", "ziftrCOIN", null);
   public static final Currency ZWL = createCurrency("ZWL", "Zimbabwean Dollar", null);
@@ -268,6 +271,7 @@ public class Currency implements Comparable<Currency>, Serializable {
   public static final Currency H18 = createCurrency("H18", "March 30th", null);
   public static final Currency M18 = createCurrency("M18", "June 29th", null);
   public static final Currency U18 = createCurrency("U18", "September 28th", null);
+  public static final Currency Z18 = createCurrency("Z18", "December 28th", null);
 
   // Cryptos
   public static final Currency BNB = createCurrency("BNB", "Binance Coin", null);
