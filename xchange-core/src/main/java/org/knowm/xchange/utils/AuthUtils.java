@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 import org.knowm.xchange.ExchangeSpecification;
+import org.apache.commons.codec.binary.Base64;
+
 
 public class AuthUtils {
 
@@ -16,7 +18,7 @@ public class AuthUtils {
    */
   public static String getBasicAuth(String user, final String pass) {
 
-    return "Basic " + java.util.Base64.getEncoder().encodeToString((user + ":" + pass).getBytes());
+    return "Basic " + Base64.encodeBase64String((user + ":" + pass).getBytes());
   }
 
   /**
